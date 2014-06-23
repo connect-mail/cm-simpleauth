@@ -34,7 +34,7 @@ gulp.task('mocha', function () {
 
 // Rerun the task when a file changes
 gulp.task('watch', function () {
-  gulp.watch(['./lib/**/*.js', './test/**/*.js'], ['jshint']);
+  gulp.watch(['./lib/**/*.js', './test/**/*.js'], ['test']);
 });
 
 gulp.task('test', function () {

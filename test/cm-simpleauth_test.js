@@ -13,11 +13,30 @@ chai.expect();
 chai.should();
 
 var simpleauth = require('../lib/cm-simpleauth.js');
-
-describe('cm-simpleauth module', function(){
-  describe('#awesome()', function(){
-    it('should return a hello', function(){
-      simpleauth.awesome('livia').should.equal("hello livia");
+var EventEmitter = require('events').EventEmitter;
+var testHost = new EventEmitter();
+describe('cm-simpleauth module', function() {
+    it('is defined', function() {
+        simpleauth.should.be.a('function');
     });
-  });
+
+    before(function(done) {
+        this.mw = simpleauth('test/users.json',done);
+    });
+
+    it('return a middleware', function() {
+        this.mw.should.be.a('function');
+    });
+
+    it('authenticate test user', function(done) {
+        this.mw(testHost);
+        testHost.emit('authorizeUser', null, 'ola', 'parroit', function(err, success) {
+            if (err) {
+                return done(err);
+            }
+            success.should.be.true;
+            done();
+
+        });
+    });
 });
