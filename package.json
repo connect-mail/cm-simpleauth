@@ -29,7 +29,9 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "jsonusersstorage": "^0.1.0"
+    "jsonusersstorage": "^0.1.0",
+    "q": "^1.0.1",
+    "object-assign": "^0.3.1"
   },
   "devDependencies": {
     "mocha": "~1.10.0",
